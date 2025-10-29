@@ -2,6 +2,14 @@
 
 @section('content')
 
+    @if(session('success'))
+        {{ session('success') }}
+    @endif
+
+    @if(session('error'))
+        {{ session('error') }}
+    @endif
+
     <table>
         <thead>
             <th>firstname</th>

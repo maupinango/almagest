@@ -8,8 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('users', UserController::class);
+Route::get('/users/', [UserController::class, 'index'])->name('users.index');
 
-Route::get('/users/create', [UserController::class, 'create']);
+Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
+Route::patch('/users/{user}/desactivate', [UserController::class, 'desactivate'])->name('users.desactivate');
 
-//AQUI
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+//AQUI: eliminar
