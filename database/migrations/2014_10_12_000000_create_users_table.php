@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('firstname', 15);
             $table->string('secondname', 50);
             $table->string('email', 40)->unique();
-            $table->string('password', 10);
+            $table->string('password', 60);
 
             //clave foránea de companies
             $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');
+            //Descomentar cuando ya se tenga la info de la BD
+            //$table->foreign('company_id')->references('id')->on('companies');
 
             $table->string('type', 1)->nullable();
             $table->tinyInteger('email_confirmed')->default(0);

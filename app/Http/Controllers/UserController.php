@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::orderBy('id', 'desc')->get();
+        $usuarios = User::where('deleted', 0)->orderBy('id', 'desc')->get();
         return view('admin/users/index', ['usuarios' => $usuarios]);
     }
 
@@ -60,6 +60,15 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->deleted = 1;  //soft delete
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
     }
 
 }
