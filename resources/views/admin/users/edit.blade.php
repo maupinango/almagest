@@ -5,6 +5,8 @@
     <h1>Editar Usuario</h1>
 
     <form action="{{ route('users.update', $usuario->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
         <label>Nombre:</label>
         <input type="text" name="firstname" value="{{ old('firstname', $usuario->firstname) }}" required>

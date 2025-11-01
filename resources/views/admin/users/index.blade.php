@@ -30,7 +30,7 @@
                     <p> {{ $usuario->email }} </p>
                 </td>
                 <td>
-                    @if($usuario->email_confirmed !$usuario->activated)
+                    @if($usuario->email_confirmed && !$usuario->activated)
                         <form action="{{ route('users.activate', $usuario->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
