@@ -11,12 +11,12 @@ class UserController extends Controller
 
     public function __construct()
     {
-        //verificar autenticacion
+        $this->middleware('auth');
     }
 
     public function index()
     {
-        $usuarios = User::where('deleted', 0)->orderBy('id', 'desc')->get();
+        $usuarios = User::where('deleted', 0)->where('email', '!=', 'admin@admin.com')->orderBy('id', 'desc')->get();
         return view('admin/users/index', ['usuarios' => $usuarios]);
     }
 

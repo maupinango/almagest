@@ -6,6 +6,8 @@
 
     <h3>Bienvenido, {{ Auth::user()->firstname }} {{ Auth::user()->secondname }}</h3>
 
-    <a href="{{ route('users.index') }}">CRUD de usuarios</a>
+    @if(Auth::user()->type == 'A')
+        <a href="{{ route('users.index') }}">CRUD de usuarios</a>
+    @endif
 </div>
 @endsection
