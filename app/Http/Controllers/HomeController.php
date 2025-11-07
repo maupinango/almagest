@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $usuarios = User::where('deleted', 0)->where('email_confirmed', 1)->where('email', '!=', 'admin@admin.com')->orderBy('id', 'desc')->get()->count();
+        return view('home', ['usuariosCant' => $usuarios]);
+
+        return view('');
     }
 }

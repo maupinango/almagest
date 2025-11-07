@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::where('deleted', 0)->where('email', '!=', 'admin@admin.com')->orderBy('id', 'desc')->get();
+        $usuarios = User::where('deleted', 0)->where('email_confirmed', 1)->where('email', '!=', 'admin@admin.com')->orderBy('id', 'desc')->get();
         return view('admin/users/index', ['usuarios' => $usuarios]);
     }
 
