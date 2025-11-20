@@ -11,7 +11,10 @@ class Family extends Model
     use HasFactory;
 
     protected $table = 'families';
-    protected $fillable = ['name','profit_margin','deleted'];
+    protected $fillable = [
+        'name',
+        'profit_margin',
+        'deleted'];
 
     //Family - Article (1-N) Relationship
     public function Article()

@@ -12,7 +12,6 @@ class Product extends Model
     protected $table='products';
 
     protected $fillable = [
-        'id',
         'article_id',
         'company_id',
         'price',

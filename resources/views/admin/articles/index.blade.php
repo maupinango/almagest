@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <h4 class="text-center mb-4">Nota: Si no ves ningún usuario, es porque aún no han verificado su correo electrónico.</h4>
+    <a href="{{ route('articles.create') }}">Agregar</a>
 
     <div class="table-container">
         <div class="table-responsive">
@@ -24,39 +24,29 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
+                        <th>Precio min</th>
+                        <th>Pecrio max</th>
+                        <th>Color</th>
+                        <th>Weight</th>
+                        <th>Size</th>
                         <th class="actions-column">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($usuarios as $usuario)
+                @foreach($articles as $article)
                     <tr>
-                        <td>{{ $usuario->firstname }}</td>
-                        <td>{{ $usuario->secondname }}</td>
-                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $article->name }}</td>
+                        <td>{{ $article->price_min }}</td>
+                        <td>{{ $article->price_max }}</td>
+                        <td>{{ $article->color_name }}</td>
+                        <td>{{ $article->weight }}</td>
+                        <td>{{ $article->size }}</td>
                         <td>
                             <div class="d-flex flex-wrap justify-content-center gap-1">
 
-                                @if(!$usuario->activated)
-                                    <form action="{{ route('users.activate', $usuario->id) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn btn-primary btn-sm">Activar</button>
-                                    </form>
-                                @endif
+                                <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary btn-sm">Editar</a>
 
-                                @if($usuario->activated)
-                                    <form action="{{ route('users.desactivate', $usuario->id) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn btn-primary btn-sm">Desactivar</button>
-                                    </form>
-                                @endif
-
-                                <a href="{{ route('users.edit', $usuario->id) }}" class="btn btn-primary btn-sm">Editar</a>
-
-                                <form action="{{ route('users.destroy', $usuario->id) }}" method="POST">
+                                <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick="return confirm('¿Estás seguro?')" class="btn btn-primary btn-sm">Eliminar</button>
@@ -69,4 +59,5 @@
             </table>
         </div>
     </div>
+
 @endsection
